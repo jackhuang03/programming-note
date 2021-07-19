@@ -22,8 +22,8 @@
 ```
 Tomcat 重啟時，Tomcat 嘗試要將 AP 存放 Session 中的資料物件反序列化時發生錯誤。這個案例發生的主因為 Session 中的物件沒有實作序列化的處理。
 
-Error happend When Tomcat server war restarted and it tried to deserialize the session data. Originally, the session object did not implment Serializale.java 
-and that caused invalid process of deserialztion.
+Error happened When Tomcat server restarted and then tried to deserialize session data. Originally, the session object from application did not implment Serializale.java 
+which caused invalid process of deserialization.
 ```
 [Session persistence problem with devtools' autorestart · Issue #4939 · spring-projects/spring-boot (github.com)](https://github.com/spring-projects/spring-boot/issues/4939)
 
@@ -32,7 +32,7 @@ and that caused invalid process of deserialztion.
 ```
 處理 Tomcat 的設定檔，關閉 session 資料的儲存，不要讓 Tomcat 啟動時去讀 session 暫存
 
-Configuring Catalina_Home/conf/server.xml to stop reading session data when starts off.
+Configuring Catalina_Home/conf/server.xml to stop reading back temporary session data when starts(restarts) off.
 ```
 [java - Running Tomcat in Eclipse and getting "Exception loading sessions from persistent storage" - Stack Overflow](https://stackoverflow.com/questions/21181964/running-tomcat-in-eclipse-and-getting-exception-loading-sessions-from-persisten)
 
